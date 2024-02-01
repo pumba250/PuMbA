@@ -7,12 +7,12 @@ $db_pass=''; // пароль пользователя
 /* 
 ** name for MySQL tables defaults
 */
-$usertab = 'users'; //table users
-$newstab = 'news'; // table news
-$commtab = 'comment'; // table comments
-$starcom = 'ocenka_comment'; // table rating comments
-$pmtab = 'messages'; // PM table
-$galtab = 'image'; // Gallery table
+$usertab = 'users'; // default table users
+$newstab = 'news'; // default table news
+$commtab = 'comment'; // default table comments
+$starcom = 'ocenka_comment'; // default table rating comments
+$pmtab = 'messages'; // default PM table
+$galtab = 'image'; // default Gallery table
 /*
 **
 */
