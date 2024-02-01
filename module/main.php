@@ -17,13 +17,6 @@ $limit = 6;
  $queryNum = $db->query("SELECT COUNT(*) as postNum FROM `{$newstab}` WHERE `cat` IN ('Главная','Статьи','Новости','Софт') AND `moderate`=1 AND `date`<='{$datepost}'");
  $resultNum = $queryNum->fetch_assoc();
  $rowCount = $resultNum['postNum'];
- //инициализируем класс pagination
- $pagConfig = array(
-     'baseURL'=>'/main',
-     'totalRows'=>$rowCount,
-     'perPage'=>$limit
- );
- $pagination =  new Pagination($pagConfig);
 // Запрос для выборки целевых элементов:
 $sql = "SELECT * FROM `{$newstab}` WHERE `cat` IN ('Главная','Статьи','Новости','Софт') AND `moderate`=1 AND `date`<='{$datepost}' ORDER BY `date` DESC, `id` LIMIT $offset,$limit;";
 // Выводим составленный SQL-запрос для отладки
@@ -63,31 +56,19 @@ $number=mysqli_num_rows($res);
 
     }
 }
-echo $pagination->createLinks(); //отображаем ссылки на страницы
 
 } else {
 	$idnew = $_GET['news'];
 // Запрос для выборки целевых элементов:
 $sql = "SELECT * FROM `{$newstab}` WHERE `altname`='{$idnew}';";
 // Выводим составленный SQL-запрос для отладки
-//print_r($char);
-//print_r($sql);
-//var_dump($_GET['news']);
 $stmt  = $pdo->query($sql);
-//print_r($stmt);
 $items = $stmt->fetchAll();
-//print_r($items);
 
 if( is_array($items) ) {
     foreach( $items AS $item ) {
 $time=time();
-
-
-//$db=mysqli_connect("localhost","Ваш_логин","Ваш_пароль","Имя_базы") or die();
-$res=mysqli_query($db,"set names utf8");
-
 $mess_url='/main/news/'.$item['altname'].'';
-
 //получаем id текущей темы
 $res=mysqli_query($db,"SELECT `id` FROM `{$newstab}` WHERE id='".$item['id']."'");
 $res=mysqli_fetch_array($res);
@@ -123,7 +104,6 @@ if (isset($_SESSION["send"]) and $_SESSION["send"]!="") {    //вывод соо
     $commalert .= ''.$_SESSION["send"].'';
     $_SESSION["send"]="";
 }
-//echo implode(', ', $item);
 $key=$item['title'];
 $keyword ='Статьи, блог, полезное, '.implode(', ', explode(' ', $key));
 		$PAGETITLE = ''.$item['title'].' << ';// Заголовок страницы с разделителем " << "
@@ -150,7 +130,6 @@ for ($i=0; $i<=count($tag[$up])-1; $i++) {
  if ($tag[$up][$i][6]==0) $tag[$up][$i][6]=$tag[$up][$i][0];
  //Высчитываем рейтинг комментария
  $sum=$tag[$up][$i][4]-$tag[$up][$i][5];
-
  if ($up==0) echo '<div style="padding:5px 0 0 0;">';
  else {
     if (count($tag[$up])-1!=$i)
@@ -181,8 +160,6 @@ for ($i=0; $i<=count($tag[$up])-1; $i++) {
  $res=mysqli_query($db,"SELECT * FROM {$commtab} WHERE theme_id='".$theme_id."' and moderation=1 ORDER BY id");
 $number=mysqli_num_rows($res);
 if ($number>0) {
-
-//print_r($usercomm);
  echo '<div style="padding:5px;text-align:center;">';
  echo 'Все комментарии проходят обязательную модерацию!<br> ';
  echo '<b>Последние комментарии:</b><br>';
@@ -198,7 +175,6 @@ echo 'name="add_comment" id="hint"><div class="close_hint">Закрыть</div>'
 echo '<textarea cols="68" rows="5" name="user_text"></textarea>';
 echo '<div style="margin:5px; float:left;">';
 echo 'Имя: <input type="text" name="mess_login" maxlength="20" value="'.htmlspecialchars(@$usercomm['username']).'"></div>';
-
 echo '<div style="margin:5px; float:right;">'.$cod.' + '.$cod2.' = ';
 echo '<input type="hidden" name="prov_summa" value="'.md5($cod+$cod2).'">';
 echo '<input type="hidden" name="parent_id" value="0">';
@@ -217,12 +193,10 @@ echo '<input type="hidden" name="prov_summa" value="'.md5($cod+$cod2).'">';
 echo '<input type="text" name="contr_cod" maxlength="4" size="4">&nbsp;';
 echo '<input type="submit" value="Отправить"></div>';
 echo '</form></div>';
-
 }
 }
 }
 
-    //echo $html;
 ?>
 <script type="text/javascript">
 function comm_on(p_id,first_p){
