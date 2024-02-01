@@ -1,0 +1,189 @@
+.garland_image {position: absolute; top: 43px; left: 0; width: 100%; height: 45px; overflow: hidden; z-index: 99; background: url(https://yunisov.tech/img/03.gif) repeat-x 100%; pointer-events: none;}
+@media (max-width: 767px) {.garland_image {display: none!important;}}
+body {
+	background-color: rgba(232,232,232,1.00);
+}
+.indicator {
+	width: 200px;
+	/*border-radius: 12px;
+	border: 1px solid #4874a3;
+	padding: 5px;*/
+	position: absolute;
+    padding-left: 40%;
+    padding-top: 20%;
+	z-index:1;
+}
+.d1 * {box-sizing: border-box;}
+.d1 form {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+.d1 input, button {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+.d1 input {
+  width: 100%;
+  height: 42px;
+  background: rgba(232,232,232,1.00);
+  padding-left: 1px;
+}
+.d1 button {
+  height: 32px;
+  width: 26px;
+  position: absolute;
+  top: 0px;
+  right: 8px;
+  background: rgba(80,80,80,1.00);
+  cursor: pointer;
+}
+.d1 button:before {
+  color: rgba(60,60,60,1.00);
+  font-size: 20px;
+  font-weight: bold;
+}
+.date {
+	float: left;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	font-size: 17px;
+	color: rgba(60,60,60,1.00);
+}
+.comm {
+	float: right;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	font-size: 17px;
+	color: rgba(60,60,60,1.00);
+}
+.comm2 {
+	float: right;
+	padding-right: 50px;
+	padding-bottom: 5px;
+	color: rgba(60,60,60,1.00);
+}
+.feedback {
+    width: 650px;
+    margin: 15px;
+    padding: 5px;
+    text-align: center;
+    background-color: #CCCCCC;
+    border-radius: 7px;
+    border: 1px solid #666666;
+}
+.feedback textarea { width: 640px; height: 100px; resize: none; }
+.feedback>div { margin: 4px 0; }
+.feedback input[type="text"] { border: 1px solid #666666; }
+#login { float: left; }
+#key, #mail { text-align: right; }
+button.btn.btn-primary {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+	width: 120px;
+	border: 1px;
+	border-radius: 4px;
+	font-size:14px;
+	padding: 0 5px 0 5px;
+}
+
+.navi {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	float: left;
+	color: rgba(60,60,60,1.00);
+}
+.rating {
+    width: 160px;
+	height: 260px;
+    border-radius: 4px;
+	background-color: rgba(245,245,245,1.00);
+    box-shadow: 0 0 1px 1px #333333;
+   /* margin: 10px auto;*/
+    padding: 4px 6px 6px 4px;
+	margin: 0 8px 8px 0;
+    text-align: center;
+	float:left;
+    color: rgba(60,60,60,1.00);
+}
+.rone {
+    width: auto;
+	height: auto;
+    border-radius: 4px;
+	background-color: rgba(245,245,245,1.00);
+    box-shadow: 0 0 1px 1px #333333;
+   /* margin: 10px auto;*/
+    padding: 4px 6px 6px 4px;
+	margin: 0 8px 8px 0;
+    text-align: center;
+	/*float:left;*/
+    color: rgba(60,60,60,1.00);
+}
+[class^="star-"]{
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    cursor: pointer;
+    background: url(/img/star.png);
+}
+[class^="star2-"]{ 
+	background: url(/img/star2.png); 
+}
+.star {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    cursor: pointer;
+    background: url(/img/star.png);
+}
+.star2 { background: url(/img/star2.png); }
+[class^="starmessage-"] { text-align: center; }
+.userating {
+    width: 160px;
+	height: 160px;
+    border-radius: 4px;
+	background-color: rgba(245,245,245,1.00);
+    box-shadow: 0 0 1px 1px #333333;
+   /* margin: 10px auto;*/
+    padding: 4px 6px 6px 4px;
+	margin: 0 8px 8px 0;
+    text-align: center;
+	float:left;
+    /*color: rgba(60,60,60,1.00);*/
+}
+    .add_comment {
+        display: table;
+        width: 580px;
+        border: 1px solid #000;
+        background-color: rgba(209,209,209,1.00);
+    }
+    .close_hint, .open_hint {
+        float: right;
+        border: 1px solid #77A;
+        background: rgba(180,180,180,1.00);
+        width: 100px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .close_hint { margin: 5px; color: #F00; }
+    .comm_body { padding: 0 5px; background-color: #EEE; text-align:left; }
+    .comm_head { 
+	padding: 3px; 
+	/*border: 1px solid #77A;*/ 
+	background-color: rgba(209,209,209,1.00); 
+	}
+    .comm_minus { background: url('/img/dislike.png') no-repeat; }
+    .comm_plus { background: url('/img/like.png') no-repeat; }
+    .comm_minus, .comm_plus {
+        float: right;
+        width: 19px;
+        height: 19px;
+        cursor: pointer;
+    }
+    .comm_text { display: none; }
+    .sp_link { color: #F33; cursor: pointer; }
+
+    #hint { position: absolute; display: none; z-index: 100; }
