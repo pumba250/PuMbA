@@ -5,19 +5,7 @@
 <?php
 echo $PAGETITLE.$_SERVER['SERVER_NAME']; echo '</title>';
 echo '<link rel="canonical" href="https://'. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'].'"/>';
-$var1 = strtotime('2024-12-15 12:59');
-$var2 = strtotime(date('Y-m-d H:i'));
-$var3 = strtotime('2025-01-08 13:00');
-$happynew = null;
-if ($var2 > $var1 and $var2 < $var3){
-	$logo = '<img src="/img/logonew.png" alt="logo" width="55" height="55" />';
-	$happynew = '<nolayer><div style="position:absolute; top:0; left:0;">  </nolayer>  
-	<img border="0" src="/img/07.png" width="150" align="left" />  
-	<nolayer>  </div>  <div class="garland_image"></div></nolayer>';
-} else {
-	$logo = '<img src="/img/logo.png" alt="logo" width="55" height="55" />';
-}
-
+$logo = '<img src="/img/logo.png" alt="logo" width="55" height="55" />';
 ?>
 
 <script type="text/javascript">
@@ -55,9 +43,7 @@ $().UItoTop({ easingType: 'easeOutQuart' });
 </script>
 <?php
 echo"<meta name='keywords' content='{$keyword}'></head>";
-echo $happynew;
-echo '<body><!--<div class="indicator"><img src="/img/sload.gif" alt="">
-</div>-->
+echo '<body>
 <div id="mainwrapper">
   <header> 
     <div id="logo">'.$logo.'</div>
