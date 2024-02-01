@@ -13,8 +13,7 @@ if ($var2 > $var1 and $var2 < $var3){
 	$logo = '<img src="/img/logonew.png" alt="logo" width="55" height="55" />';
 	$happynew = '<nolayer><div style="position:absolute; top:0; left:0;">  </nolayer>  
 	<img border="0" src="/img/07.png" width="150" align="left" />  
-	<nolayer>  </div>  <div class="garland_image"></div></nolayer>  
-	<!--<script type="text/javascript" src="/js/07.js"></script>-->';
+	<nolayer>  </div>  <div class="garland_image"></div></nolayer>';
 } else {
 	$logo = '<img src="/img/logo.png" alt="logo" width="55" height="55" />';
 }
@@ -78,7 +77,7 @@ echo '<body><!--<div class="indicator"><img src="/img/sload.gif" alt="">
 <div id="mainwrapper">
   <header> 
     <div id="logo">'.$logo.'</div>
-    <nav><a href="/" title="Главная страница">Главная</a> <a href="/about" title="О Нас">О Нас</a> <!--<a href="#" title="Услуги">Услуги</a>--><a href="/team" title="Наша Команда">Команда</a></nav>
+    <nav><a href="/" title="Главная страница">Главная</a> </nav>
   </header>
   <div id="content">
     <div class="notOnDesktop">
