@@ -30,14 +30,15 @@ if ($nowBirthday > $now) {
 //echo $years;
 $_SESSION['valid_adult']=$years;
 }
-if ($_GET['mod']=="") {
-	$_GET['mod']=$sys_def_mod;
-	@include("module/" . $_GET['mod'] . ".php");
-	gzdocout(); 
-	}
-if (!file_exists("module/".@$_GET['mod'].".php")) {
-	include('module/404.php');
-	}
+if (!isset($_GET['mod']) || ($_GET['mod']=="") || (!file_exists ("mods/".$_GET['mod'].".php"))) {
+	$_GET['mod'] = $sys_def_mod;
+}
+if (!file_exists("mods/".@$_GET['mod'].".php")) {
+	include('mods/404.php');
+	} else {
+@include("mods/" . $_GET['mod'] . ".php");
+// gzdocout(); 
+ }
 }
 
 ?>
