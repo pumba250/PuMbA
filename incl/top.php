@@ -42,35 +42,19 @@ day + "-го " + mnt[d.getMonth()] + " " + d.getFullYear() + "<br>");
 setInterval("clock()",1000);
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="title" content="yunisov.tech">
 <meta name="Generator" content="PuMbA 0.6" />
 <meta name="robots" content="index, follow">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <meta name="language" content="Russian">
 <meta name="revisit-after" content="2 days">
 <meta name="author" content="pumba">
-<link href="/css/bstyle.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" media="screen,projection" href="/css/ui.totop.css" />
-<script src="/js/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="/css/jquery.thumbs.css">
-<script src="/js/jquery.thumbs.js"></script>
-<script src="/js/easing.js" type="text/javascript"></script>
-<script src="/js/jquery.ui.totop.js" type="text/javascript"></script>
-<link href="/css/lightbox.css" rel="stylesheet" />
-<link href="/css/style.css" rel="stylesheet" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/css/adaptive.css" rel="stylesheet" />
 <script type="text/javascript">
 $(document).ready(function() {
- 
 $().UItoTop({ easingType: 'easeOutQuart' });
- 
 });
 </script>
-
 <?php
 echo"<meta name='keywords' content='{$keyword}'></head>";
-
 echo $happynew;
 echo '<body><!--<div class="indicator"><img src="/img/sload.gif" alt="">
 </div>-->
