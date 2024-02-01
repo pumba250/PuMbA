@@ -5,6 +5,7 @@ if (session_id()=='') session_start();
 require('incl/db.php');
 include('incl/gzdoc.php');
 include("incl/config.php");
+include("incl/boot.php");
 if ($maintance>0){
 	echo '<center><img src="/img/maintance.jpg" height="70%">';
 } else {
