@@ -1,6 +1,6 @@
     </section>
     <section id="sidebar">
-	<div><span id="time">Дата и время</span>
+	<div>
 <?php
 
 		$u_id=$_SESSION['user_id'];
@@ -110,22 +110,8 @@ if (!$user){
 echo '</div>';
 echo '<nav>
     <ul>
-		<li><a href="/" title="Главная">Главная</a></li>';
+		<li><a href="/" title="Главная">Главная</a></li>
 
-if ($_GET['mod']=='gallery'){
-	$sql="select DISTINCT `cat` from `{$galtab}` WHERE `cat` is not null order by `cat` asc";
-		$sth=$pdo->prepare($sql);
-		$sth->execute();
-		$list=$sth->fetchAll(PDO::FETCH_ASSOC);
-		echo '<li><a href="/gallery/" title="Галерея ИИ">Галерея ИИ</a><ul>';
-		foreach ($list as $opt){
-			echo '<li><a href="/gallery/cat/'.$opt['cat'].'">- '.$opt['cat'].'</a></li>';
-		}
-		echo '</ul></li>';
-} else {
-	echo '<li><a href="/gallery/" title="Галерея ИИ">Галерея ИИ</a></li>';
-}
-echo '<li><a href="/gphoto/" title="Ваши работы">Ваши работы</a></li>
     </ul>
 </nav>';
     echo '</section>';
@@ -155,15 +141,7 @@ $current_time=microtime(1);
 //    Вычисляем разницу во времени
 $result_time=round($current_time - $start_time, 5);
 //    Выводим результат
-if ($user & $user['isadmin'] == 9){
-	echo on_line(true).on_line().'<div class="comm2">Время генерации - '.$result_time.' сек.<br>'.$visits.$errno.'</div>';
-
-} else {
-	echo on_line().'<div class="comm2">Время генерации - '.$result_time.' сек.<br>'.$visits.'</div>';
-}
-if ($debug==1){
-print_r($_SESSION);
-}
+echo '<div class="comm2">Время генерации - '.$result_time.' сек.<br></div>';
 ?>
 </div>
 </body>
