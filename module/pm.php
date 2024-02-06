@@ -8,16 +8,9 @@ echo '<section id="mainContent">
 if ($user){
 	if ($_GET['act']=='send'){
 		if (!empty($_POST)){
-		/**
-		 * Принимаем постовые данные. Очистим сообщение от html тэгов
-		 * и приведем id получателя к типу integer
-		 */
 		$message= htmlspecialchars($_POST['message']);
 		$to=(int)$_POST['to'];
 		$from = $_SESSION['user_id'];
-		/**
-		 * Я использую библиотеку PDO
-		 */
 		$sql="insert into `{$pmtab}` (`from`,`to`,`message`,`flag`) values (:u_from,:u_to,:message,:flag)";
 		$sth=$pdo->prepare($sql);
 		$sth->bindValue(':u_from', $from);// 1 - ID отправителя
@@ -26,19 +19,15 @@ if ($user){
 		$sth->bindValue(':flag', 0);
 		$sth->execute();
 		$error=$sth->errorInfo();
-		/**
-		 * Проверка результата запроса
-		 */
-		 //echo $error[0];
 		if($error[0]==0){
 			//echo 'Сообщение успешно отправлено';
 			flash('Сообщение успешно отправлено');
-			header('Location: /pm/'); // Возврат на форму регистрации
+			header('Location: /pm/'); // Возврат
 			die; // Остановка выполнения скрипта
 		}else{
 			//echo 'Ошибка отправки сообщения';
 			flash('Ошибка отправки сообщения');
-			header('Location: '.$_SERVER['HTTP_REFERER'].''); // Возврат на форму регистрации
+			header('Location: '.$_SERVER['HTTP_REFERER'].''); // Возврат
 			die; // Остановка выполнения скрипта
 		}
 		} else {
@@ -88,29 +77,14 @@ if ($user){
 		</form>';
 		
 	} elseif (isset($_GET['read_id'])) {
-		/**
-		 * Номер пользователя
-		 */
 		$u_id=$_SESSION['user_id'];
-
-		/**
-		 * Получаем номер сообщения. Приводим его типу Integer
-		 */
 		$id_mess=(int)$_GET['read_id'];
-		/**
-		 * Достаем сообщение. Помимо номера сообщения ориентируемся и на id пользователя
-		 * Это исключит возможность чтения чужого сообщения, методом подбора id сообщения
-		 */
 		$sql="select * from `{$pmtab}` where `to` = :u_to and `id` = :id_mess";
 		$sth=$pdo->prepare($sql);
 		$sth->bindParam(':u_to',$u_id,PDO::PARAM_INT);
 		$sth->bindParam(':id_mess',$id_mess,PDO::PARAM_INT);
 		$sth->execute();
 		$res=$sth->fetch(PDO::FETCH_ASSOC);
-
-		/**
-		 * Установим флаг о прочтении сообщения если прочитал тот кому написано
-		 */
 		if ($_SESSION['user_id']==$res['to']){
 		$sql="update `{$pmtab}` set `flag` = 1 where  `to` = :u_to and `id` = :id_mess";
 		$sth=$pdo->prepare($sql);
@@ -118,9 +92,6 @@ if ($user){
 		$sth->bindParam(':id_mess',$id_mess,PDO::PARAM_INT);
 		$sth->execute();
 		}
-		/**
-		 * Выводим сообщение с датой отправки
-		 */
 		if($res['id']<>''){
 			echo '<div><a href='.$_SERVER['HTTP_REFERER'].'> Назад</a></div>';
 			echo '<div>'.$res['message'].'</div><div>Дата отправки: '.$res['data'].'</div>';
@@ -134,20 +105,9 @@ if ($user){
 			echo 'Данного сообщения не существует или оно предназначено не вам.';
 		}
 	} elseif (isset($_GET['answer_id'])) {
-		/**
-		 * Номер пользователя
-		 */
 		$u_id=$_SESSION['user_id'];
 		//$u_id=2;
-
-		/**
-		 * Получаем номер сообщения. Приводим его типу Integer
-		 */
 		$id_mess=(int)$_GET['answer_id'];
-		/**
-		 * Достаем сообщение. Помимо номера сообщения ориентируемся и на id пользователя
-		 * Это исключит возможность чтения чужого сообщения, методом подбора id сообщения
-		 */
 		$sql="select * from `{$pmtab}` where `id` = :id_mess";
 		$sth=$pdo->prepare($sql);
 		//$sth->bindParam(':u_to',$u_id,PDO::PARAM_INT);
@@ -160,13 +120,7 @@ if ($user){
 			<tr><td></td><td><input type="hidden" name="to" value="'.$res['from'].'"><input type="submit"  value="Отправить" /></td></tr></table>
 		</form>';
 	} else {
-		/**
-		 * Номер пользователя,для которого отображать сообщения
-		 */
 		$u_id=$_SESSION['user_id'];
-		/**
-		 * Достаем сообщения
-		 */
 		$sql="select * from `{$pmtab}` where `to` = :u_to order by `id` desc";
 		$sth=$pdo->prepare($sql);
 		$sth->bindValue(':u_to', $u_id);
