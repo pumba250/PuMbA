@@ -14,11 +14,11 @@ if (empty($_GET['news']) ) { //news -> id short full cat date
 $limit = 6;
  $offset = !empty($_GET['page'])?(($_GET['page']-1)*$limit):0;
  //получаем количество записей
- $queryNum = $db->query("SELECT COUNT(*) as postNum FROM `{$newstab}` WHERE `cat` IN ('Главная','Статьи','Новости','Софт') AND `moderate`=1 AND `date`<='{$datepost}'");
+ $queryNum = $db->query("SELECT COUNT(*) as postNum FROM `{$newstab}` WHERE `moderate`=1 AND `date`<='{$datepost}'");
  $resultNum = $queryNum->fetch_assoc();
  $rowCount = $resultNum['postNum'];
 // Запрос для выборки целевых элементов:
-$sql = "SELECT * FROM `{$newstab}` WHERE `cat` IN ('Главная','Статьи','Новости','Софт') AND `moderate`=1 AND `date`<='{$datepost}' ORDER BY `date` DESC, `id` LIMIT $offset,$limit;";
+$sql = "SELECT * FROM `{$newstab}` WHERE `moderate`=1 AND `date`<='{$datepost}' ORDER BY `date` DESC, `id` LIMIT $offset,$limit;";
 // Выводим составленный SQL-запрос для отладки
 //print_r($sql);
 $stmt  = $pdo->query($sql);
@@ -26,10 +26,10 @@ $stmt  = $pdo->query($sql);
 $items = $stmt->fetchAll();
 //print_r($items);
 if (!empty($_GET['page'])){
-	$keyword ='Статьи, блог, полезное';
+	$keyword ='';
 	$PAGETITLE = 'Страница '.@$_GET['page'].' << Главная << '; // Заголовок страницы с разделителем " << "
 } else {
-$keyword ='Статьи, блог, полезное';
+$keyword ='';
 $PAGETITLE = 'Главная << '; // Заголовок страницы с разделителем " << "
 }
 include("incl/top.php");
@@ -37,9 +37,6 @@ include("incl/top.php");
 if( is_array($items) ) {
     foreach( $items AS $item ) {
         // ... ЗДЕСЬ КОД ФОРМИРУЮЩИЙ ВЫВОД ЭЛЕМЕНТОВ ...
-$theme_id=$item['id'];
-$res=mysqli_query($db,"SELECT * FROM `{$commtab}` WHERE theme_id='".$theme_id."' and moderation=1 ORDER BY id");
-$number=mysqli_num_rows($res);
     echo '<h1><b>'.$item['cat'].'</b> > <a href="/main/news/'.$item['altname'].'">'.$item['title'].'</a></h1><p>';
 	echo $item['short'];
 	echo '</p>
@@ -51,7 +48,7 @@ $number=mysqli_num_rows($res);
 	  } else {
 		  echo '<div class="date">Добавлено:'.$item['date'].'</div>';
 	  }
-	  echo '<div class="comm">Комментариев: '.$number.'</div><div style="clear:both"></div>
+	  echo '<div style="clear:both"></div>
 	  </aside>';
 
     }
@@ -71,12 +68,10 @@ $time=time();
 
 $key=$item['title'];
 $keyword ='Статьи, блог, полезное, '.implode(', ', explode(' ', $key));
-		$PAGETITLE = ''.$item['title'].' << ';// Заголовок страницы с разделителем " << "
+		$PAGETITLE = ''.$key.' << ';// Заголовок страницы с разделителем " << "
 include("incl/top.php");
 	echo '<section id="mainContent">';
-        // ... ЗДЕСЬ КОД ФОРМИРУЮЩИЙ ВЫВОД ЭЛЕМЕНТОВ ...
-
-    echo '<h1>'.$item['title'].'</h1>
+    echo '<h1>'.$key.'</h1>
 	<p>'.$item['full'].'</p>
 	<aside id="authorInfo">
     <h2>Автор: '.$item['author'].'</h2>';
