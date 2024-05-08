@@ -6,7 +6,7 @@ require('incl/db.php');
 include('incl/gzdoc.php');
 include("incl/config.php");
 include("incl/boot.php");
-if ($maintance>0){
+if ($maintance>0){ //set incl/config.php
 	echo '<center><img src="/img/maintance.jpg" height="70%">';
 } else {
 if (!isset($_GET['mod']) || ($_GET['mod']=="")) {
